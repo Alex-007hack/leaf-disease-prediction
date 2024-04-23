@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block title %}
+eLeaf Prediction - Login
+{% endblock %}
+{% block body %}
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="padd-section">
+
+        <div class="container" data-aos="fade-up">
+          <div class="section-title text-center">
+            <h2>Login Form</h2>
+            <p class="separator">Login here and  predict leaf disease</p>
+          </div>
+  
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+  
+            <div class="col-lg-3 col-md-4">
+  
+              
+  
+              
+  
+            </div>
+  
+            <div class="col-lg-5 col-md-8">
+              <div class="form">
+                <form  method="POST" role="form" class="email-form">
+                    {% csrf_token %}
+                  {% if messages %}
+                  {% for i in messages %}
+                  {{i}}
+                    {% endfor %}
+                    {% endif %}
+                     <div class="form-group mt-3">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Your password" required>
+                  </div><br>
+                  
+                  <div class="text-center"><button type="submit" class="btn btn-success">Login</button></div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!-- End Contact Section -->
+{% endblock %}

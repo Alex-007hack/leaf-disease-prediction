@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block title %}
+eLeaf Prediction - Register
+{% endblock %}
+{% block body %}
+{% if current_user %}
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="padd-section" style="margin-top:90px;">
+
+        <div class="container" data-aos="fade-up">
+          <div class="section-title text-center">
+            <h2>Leaf Disease Prediction</h2>
+            <p class="separator">Upload your leaf image and predict disease</p>
+          </div>
+
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+  
+            <div class="col-lg-3 col-md-4">
+  
+                {% if messages %}
+                {% for i in messages %}
+               <h2> {{i}}</h2>
+               {% endfor %}
+               Feedback of the prediction
+               <a href="{% url 'feedbackform' %}"><button class="btn btn-success">Feedback</button></a>
+               {% if predict == 'powdery' %}
+               <a href="{% url 'powderyprecaution' %}"><button class="btn btn-success">Precaution</button></a>
+               <a href="https://kau.in/institution/agricultural-research-station-mannuthy"><button class="btn btn-danger">Alert</button></a>
+               {% endif %}
+               {% if predict == 'rust' %}
+               <a href="{% url 'rustprecaution' %}"><button class="btn btn-success">Precaution</button></a>
+               <!-- <a href="#"><button class="btn btn-danger">Alert</button></a> -->
+               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Alert</button>
+
+               {% endif %}
+                  
+                  {% endif %}
+  
+              
+  
+            </div>
+  
+            <div class="col-lg-5 col-md-8">
+              <div class="form">
+                <form method="POST" class="email-form" enctype="multipart/form-data" action="{% url 'prediction' %}">
+                    {% csrf_token %}
+                    
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="name" value="{{user.Name}}" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <label for="file">Upload your Leaf Image : </label>
+                  </div>
+                  <div class="form-group mt-3">
+                    <input type="file" class="form-control" name="image" id="file" required>
+                  </div><br>
+                  
+                  
+                  <div class="text-center"><button type="submit" class="btn btn-success">Predict</button></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!-- End Contact Section -->
+    {% else %}
+    <section id="contact" class="padd-section" style="margin-top:90px;">
+
+        <div class="container" data-aos="fade-up">
+          <div class="section-title text-center">
+            <h2>Leaf Disease Prediction</h2>
+            <p class="separator">Upload your leaf image and predict disease</p>
+          </div>
+
+            <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+  
+                <div class="col-lg-3 col-md-4">
+  
+               <h2> You dont have permission to do this without login. Click here to login
+                <a href="{% url 'login' %}">Login</a>
+               </h2>
+  
+              
+  
+                </div>
+            </div>
+        </div>
+    </section><!-- End Contact Section -->
+
+
+
+
+    {% endif %}
+
+    
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Send Alert Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'sendalert' %}" method="post">
+        {% csrf_token %}
+      <div class="modal-body">
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">E-mail:</label>
+            <input type="text" class="form-control" id="recipient-name" name="email" required="required">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text" name="message" required></textarea>
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Send message</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block title %}
+eLeaf Prediction - update profile
+{% endblock %}
+{% block body %}
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="padd-section" style="margin-top:90px;">
+
+        <div class="container" data-aos="fade-up">
+          <div class="section-title text-center">
+            <h2>Profile Updation</h2>
+            <p class="separator">You can Edit and update your profile</p>
+          </div>
+  
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+  
+            <div class="col-lg-3 col-md-4">
+  
+              
+  
+              
+  
+            </div>
+  
+            <div class="col-lg-5 col-md-8">
+              <div class="form">
+                <form method="POST" class="email-form">
+                    {% csrf_token %}
+                    {% if messages %}
+                    {% for i in messages %}
+                    {{i}}
+                      {% endfor %}
+                      {% endif %}
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="name" value="{{user.Name}}" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <input type="password" class="form-control" name="password" id="password" value="{{user.Password}}" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirm Password" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <input type="text" name="phone" class="form-control" id="phone" value="{{user.PhoneNo}}" required>
+                  </div><br>
+                  
+                  <div class="text-center"><button type="submit" class="btn btn-success">Update</button></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!-- End Contact Section -->
+{% endblock %}

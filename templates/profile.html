@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+eLeaf Prediction - Profile
+{% endblock %}
+{% block body %}
+   <!-- ======= Testimonials Section ======= -->
+   <section id="testimonials" class="padd-section text-center" style="margin-top: 100px;">
+    <div class="container" data-aos="fade-up">
+      <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+          <div class="testimonials-content">
+            <div id="carousel-example-generic" class="carousel slide" data-bs-ride="carousel">
+
+              <div class="carousel-inner" role="listbox">
+
+                <div class="carousel-item  active">
+                  <div class="top-top">
+
+                    <h2>My Profile</h2>
+                    <p>Name : <h4>{{user.Name}}</h4></p>
+                    <p>Email ID : <h4>{{user.EmailID}}</h4></p>
+                    <p>Password : <h4>{{user.Password}}</h4></p>
+                    <p>Mobile Number : <h4>{{user.PhoneNo}}</h4></p>
+
+                  </div>
+                </div>
+              </div>
+
+              <div>
+
+                <ul class="list-unstyled carousel-indicators">
+                  <a href="{% url 'updateprofile' %}"><li><button class="btn btn-success">Update Profile</button></li></a>
+                </ul>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Testimonials Section -->
+  {% endblock %}

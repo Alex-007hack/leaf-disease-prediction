@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}
+eLeaf Prediction - community form
+{% endblock %}
+{% block body %}
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="padd-section" style="margin-top:90px;">
+
+        <div class="container" data-aos="fade-up">
+          <div class="section-title text-center">
+            <h2>Community  Form</h2>
+            <p class="separator">Enter your experience and share to all...</p>
+          </div>
+  
+          <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100">
+  
+            <div class="col-lg-5 col-md-8">
+              <div class="form">
+                <form method="POST" class="email-form">
+                    {% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" id="name" value="{{user.Name}}" required>
+                  </div>
+                  <div class="form-group mt-3">
+                    <textarea class="form-control" name="experience" rows="5" placeholder="Enter your Experience" required></textarea>
+                  </div>
+                  <br>
+                  
+                  <div class="text-center"><button type="submit" class="btn btn-success">Share</button></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!-- End Contact Section -->
+{% endblock %}
